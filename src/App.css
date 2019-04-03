@@ -1,0 +1,3 @@
+.carousel-control.left, .carousel-control.right {
+    z-index: 1;
+  }
