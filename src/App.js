@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import Default from './components/Default'
 import Details from './components/Details'
 import Navbar from './components/Navbar'
 import Product from './components/Product'
 import ProductList from './components/ProductList'
-import Cart from './components/Cart'
+import Cart from './components/cart/Cart'
 import Footer from './components/Footer'
 import './App.css'
 
@@ -18,6 +18,7 @@ class App extends Component {
   render() {
     return (
           <React.Fragment>
+            
             <Navbar/>
             <Switch>
                 <Route exact path="/" component={ProductList}/>
@@ -25,9 +26,8 @@ class App extends Component {
                 <Route  path="/details/:product_id" component={Details}/>
                 <Route  component={Default}/>
             </Switch>
-
             <Footer/>  
-          
+         
           </React.Fragment>
     )
   }

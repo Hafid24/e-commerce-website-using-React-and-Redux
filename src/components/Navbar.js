@@ -10,10 +10,10 @@ import loginModal from './loginModal'
         <loginModal/>
           <div className="container-fluid">
             <div className="navbar-header">
-              <Link to = "/" className="navbar-brand">Store</Link>
+              <Link to = {"/"} className="navbar-brand">Store</Link>
           </div>
           <ul className="nav navbar-nav">
-            <li className="active nav-item ml-5"><Link to={"#"}>Home</Link></li>
+            <li className="active nav-item ml-5"><Link to={"/"}>Home</Link></li>
             <li className="dropdown nav-item ml-5">
               <Link  to={"#"} className="dropdown-toggle" data-toggle = "dropdown">Categories <span className="caret"></span></Link>
                 <ul className="dropdown-menu">
@@ -27,7 +27,7 @@ import loginModal from './loginModal'
           </ul>
           <ul className="nav navbar-nav navbar-right">
           <li className="nav-item ml-5">
-            <Link to={"#"} className="ml-auto"><span className="badge pull-right">4</span>
+            <Link to={"/cart"} className="ml-auto"><span className="badge pull-right">4</span>
                   <i className="glyphicon glyphicon-shopping-cart"></i></Link></li>            
           <li><Link to={"#"}><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
               <li><Link to={loginModal} data-toggle="modal" data-target="#loginModal"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>

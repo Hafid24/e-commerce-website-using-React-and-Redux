@@ -8,11 +8,42 @@ import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
+import { createBrowserHistory } from 'history' 
 
 
-const store = createStore(rootReducer,applyMiddleware(thunk));
+const history = createBrowserHistory()
+const loadState = () => {
+    try {
+      const serializedState = localStorage.getItem('state');
+      if(serializedState === null) {
+        return undefined;
+      }
+      return JSON.parse(serializedState);
+    } catch (e) {
+      return undefined;
+    }
+  };
+  
+  const saveState = (state) => {
+    try {
+      const serializedState = JSON.stringify(state);
+      localStorage.setItem('state', serializedState);
+    } catch (e) {
+      // Ignore write errors;
+    }
+  };
+  
+  const peristedState = loadState();
+  
 
-ReactDOM.render(<Provider store= {store}><BrowserRouter><App /></BrowserRouter></Provider>, document.getElementById('root'));
+  
+
+const store = createStore(rootReducer, peristedState ,applyMiddleware(thunk));
+store.subscribe(() => {
+    saveState(store.getState());
+  });
+  
+ReactDOM.render(<BrowserRouter><Provider store= {store}><App/></Provider></BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

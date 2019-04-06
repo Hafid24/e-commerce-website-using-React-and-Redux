@@ -4,13 +4,21 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
  class Product extends Component {
+  state={
+
+  }
   
+
   handlePlusClick = (e)=>{
     this.props.addCart(this.props.id)
-    console.log(this.props)
+    console.log(this.props.product.inCart)
+    this.setState({
+      ...this.state
+    })
+
   }
   render() {
-    const {id,title, img , price, company, info, inCart, count , total} = this.props
+    let {id,title, img , price, company, info, inCart, count , total} = this.props.product;  
    
     return (
       <div>
@@ -19,9 +27,9 @@ import {Link} from 'react-router-dom'
           <img className= "size" src= {img} alt=""/>
       </Link>
             <div class="add-to-cart">
-              {inCart? (<a href="#" class="glyphicon glyphicon-plus-sign plus-sign red" onClick={this.handlePlusClick}
-                data-toggle="tooltip" data-placement="top" title="Add to cart"></a>):(<a href="#" class="glyphicon glyphicon-plus-sign plus-sign" onClick={this.handlePlusClick}
-                data-toggle="tooltip" data-placement="top" title="Add to cart"></a>)}
+              {inCart? (<i class="glyphicon glyphicon-plus-sign plus-sign red" onClick={this.handlePlusClick}
+                data-toggle="tooltip" data-placement="top" title="Add to cart"></i>):(<i  class="glyphicon glyphicon-plus-sign plus-sign blue" onClick={this.handlePlusClick}
+                data-toggle="tooltip" data-placement="top" title="Add to cart"></i>)}
                 
             </div>
             <div class="caption">
@@ -47,12 +55,11 @@ import {Link} from 'react-router-dom'
     )
   }
 }
-const mapStateToProps = state =>{
+const mapStateToProps = (state, ownProps) =>{
+  let id = ownProps.id;
   return ({
-  products: state.products.products,
-  loading: state.products.loading,
-  error: state.products.error
-});
+    product: state.products.products.find(product => product.id == id)
+ });
 }
 
 const mapDispatchToProps = (dispatch)=>{

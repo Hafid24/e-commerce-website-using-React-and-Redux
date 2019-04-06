@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Product from './Product'
 import { connect } from "react-redux";
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router';
+import {compose} from 'redux';
 import { fetchProducts } from "../actions/productActions";
 import Arousel from './Arousel'
 import Categories from './Categories'
@@ -10,6 +11,7 @@ import '../style/ProductList.css'
 
 let count = 0;
  class ProductList extends Component {
+  
   state={
     allProducts:[],
     currentProducts: [], 
@@ -19,7 +21,9 @@ let count = 0;
 
   componentDidMount() {
   this.props.dispatch(fetchProducts());
-  }
+  //this.setState({...this.state})
+ //this.render();
+}
   componentWillReceiveProps(){
     count=0;
   }
@@ -32,7 +36,7 @@ let count = 0;
         
       count++;
       }
-      console.log(this.state.allProducts)
+ 
     }
  
 
@@ -42,14 +46,13 @@ let count = 0;
       products.map(product => {
               return(
                    <div class="col-sm-6 col-md-4">
-                     <Product id = {product.id} title= {product.title} price = {product.price} img={product.img} company={product.company}
-                     info = {product.info} inCart = {product.inCart} count = {product.count} total={product.total}/>
+                     <Product id = {product.id}/>
                    </div>
               )
       })
       
     ):(<h3>HEllo from product</h3>))
-    }else { return (<h3>HEllo from product</h3>)}
+    }else { return (<h3>There is no product</h3>)}
   }
 
   onPageChanged = data => {
@@ -69,6 +72,7 @@ let count = 0;
     if (totalProducts === 0) return null;
 
     const  ProductsList= this.getProducts(this.state.currentProducts);
+    console.log(ProductsList)
     return (
 
             <div id="content" class="container">
@@ -76,7 +80,7 @@ let count = 0;
               <div className="padding-top">
               <div className="row">
                 <div className="col-sm-4 col-md-3">
-                    <Categories/>
+                    <Categories category="All"/>
                 </div>
                 <div className="col-sm-8 col-md-9">
                   <div className="row">
@@ -93,12 +97,13 @@ let count = 0;
   }
 }
 const mapStateToProps = state =>{
-  console.log(state);
   return ({
   products: state.products.products,
   loading: state.products.loading,
   error: state.products.error
 });
 }
-
-export default connect(mapStateToProps)(ProductList)
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(ProductList);
