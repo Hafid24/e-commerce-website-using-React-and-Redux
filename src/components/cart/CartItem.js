@@ -10,28 +10,32 @@ import '../../App.css'
 
     }
     handleRemoveItem=()=>{
-
+        this.props.removeCart(this.props.product.id)
+        this.setState({ ...this.state})
     }
     handleDecrement=()=>{
-
+      this.props.decrement(this.props.product.id)
+      this.setState({ ...this.state})
+      console.log(this.props.product.total, this.props.product.count)
     }
     handleIncrement=()=>{
-         
+      this.props.increment(this.props.product.id)    
+      this.setState({ ...this.state})
+      console.log(this.props.product.total, this.props.product.count)
     }
 
   render() {
-      const {id,title,img,price,total,count} = this.props.product;
-     console.log(this.props.product)
+    const {id,title,img,price,total,count} = this.props.product;
     return (
       <div className="row my-1 text-capitalize text-center">
       <div className="col-sm-2 col-md-2 mx-auto col-lg-2">
             <img src={img} alt="" style={{width:'5rem',height:'5rem'}} className= "img-fluid"/>
       </div>
       <div className="col-sm-2 col-md-2 mx-auto col-lg-2">
-            {title}
+            <span className="bold">{title}</span>
       </div>
       <div className="col-sm-2 col-md-2 mx-auto col-lg-2">
-            <span>${price}</span>
+            <span className="bold">${price}</span>
       </div>
       <div className="col-sm-2 col-md-2 mx-auto col-lg-2">
         <div className="d-flex justify-content-center">
@@ -48,14 +52,21 @@ import '../../App.css'
            </div>
       </div>
       <div className="col-sm-2 col-md-2 mx-auto col-lg-2">
-            <span>${total}</span>
+            <span className="bold">${total}</span>
       </div>
 
       </div> 
     )
   }
 }
-
+const mapDispatchToProps = (dispatch)=>{
+  return {
+      removeCart : (id)=> {dispatch({type: 'REMOVE_CART', id:id})},
+      increment : (id)=>{dispatch({type: 'INCREMENT', id:id})},
+      decrement : (id)=>{dispatch({type: 'DECREMENT', id:id})}
+     
+  }
+}
 const mapStateToProps = (state,ownProps)=>{
     let id = ownProps.id;
     return {
@@ -64,5 +75,5 @@ const mapStateToProps = (state,ownProps)=>{
    }
   export default compose(
     withRouter,
-    connect(mapStateToProps)
+    connect(mapStateToProps,mapDispatchToProps)
   )(CartItem);
