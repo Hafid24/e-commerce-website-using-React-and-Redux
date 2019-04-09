@@ -11,20 +11,19 @@ import {Link} from 'react-router-dom'
 
   handlePlusClick = (e)=>{
     this.props.addCart(this.props.id)
-    console.log(this.props.product.inCart)
     this.setState({
       ...this.state
     })
 
   }
   render() {
-    let {id,title, img , price, company, info, inCart, count , total} = this.props.product;  
+    let {id,title , price, company, info, inCart, count , total} = this.props.product;  
    
     return (
       <div>
       <div class="thumbnail">
       <Link to ={'/details/'+ id}>
-          <img className= "size" src= {img} alt=""/>
+          <img className= "size" src= {this.props.img} alt=""/>
       </Link>
             <div class="add-to-cart">
               {inCart? (<i class="glyphicon glyphicon-plus-sign plus-sign red" onClick={this.handlePlusClick}
@@ -39,8 +38,7 @@ import {Link} from 'react-router-dom'
               <p>This is a short description. Lorem ipsum dolor sit
                 amet, consectetur adipiscing elit.</p>
                   <div class="ratings">
-                      <p class="pull-right"><a href="product.
-                      html#comments">15 reviews</a></p>
+                      <p class="pull-right"><a href="">15 reviews</a></p>
                       <p>
                       <span class="glyphicon glyphicon-star"></span>
                       <span class="glyphicon glyphicon-star"></span>
