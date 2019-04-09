@@ -10,8 +10,7 @@ export default class Footer extends Component {
         <footer>
             <div class="row">
             <div class="col-lg-12">
-            <p>Copyright &copy; <Link to={ProductList}>Packt
-            Publishing</Link> 2019</p>
+            <p>Copyright &copy;  2019</p>
             </div>
             </div>
         </footer>
