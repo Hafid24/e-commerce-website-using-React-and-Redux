@@ -6,10 +6,11 @@ import {compose} from 'redux';
 import Categories from './Categories'
 import Pagination from '../pagination/Pagination'
 import '../style/ProductList.css'
+import PropTypes from 'prop-types';
 
 let count = 0;
 
- class ProductList extends Component {
+ class Brand extends Component {
   
   state={
     allProducts:[],
@@ -100,18 +101,21 @@ componentDidMount=()=>{
     )
   }
 }
+
+Brand.propTypes = {
+  products: PropTypes.array
+};
+
 const mapStateToProps = (state,ownProps) =>{
     let brand = ownProps.match.params.brand;
-    const filtered = state.products.products.filter(product => product.company.toLowerCase() == brand.toLowerCase());
+    const filteredProducts = state.products.products.filter(product => product.company.toLowerCase() == brand.toLowerCase());
 
   return ({
-  products: filteredProducts,
-  loading: state.products.loading,
-  error: state.products.error
+  products: filteredProducts
 });
 }
 export default compose(
   withRouter,
   connect(mapStateToProps)
-)(ProductList);
+)(Brand);
 //export default withRouter(connect(mapStateToProps)(ProductList));

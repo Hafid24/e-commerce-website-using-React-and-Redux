@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../style/Product.css'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types';
 
  class Product extends Component {
   state={
@@ -53,6 +54,11 @@ import {Link} from 'react-router-dom'
     )
   }
 }
+Product.propTypes = {
+  product: PropTypes.object,
+  addCart: PropTypes.func
+};
+
 const mapStateToProps = (state, ownProps) =>{
   let id = ownProps.id;
   return ({

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {Link,withRouter} from 'react-router';
 import {compose} from 'redux';
 import CartItem from './CartItem'
+import PropTypes from 'prop-types';
 
  class CartList extends Component {
   render() {
@@ -17,6 +18,11 @@ import CartItem from './CartItem'
     )
   }
 }
+
+CartList.propTypes = {
+  cart: PropTypes.array
+};
+
 const mapStateToProps = state =>{
     return ({
     cart: state.products.cart

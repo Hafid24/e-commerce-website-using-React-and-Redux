@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom'
 import {compose} from 'redux';
-import PayPalButton from '../PayPalButton'
-
+import PropTypes from 'prop-types';
 
 class Cart extends Component {
   state={
@@ -54,6 +53,12 @@ class Cart extends Component {
     )
   }
 }
+
+Cart.propTypes = {
+  cart: PropTypes.array,
+  clearCart: PropTypes.func
+};
+
 const mapStateToProps = state =>{
   return ({
   cart: state.products.cart,

@@ -6,6 +6,7 @@ import {compose} from 'redux';
 import Categories from './Categories'
 import Pagination from '../pagination/Pagination'
 import '../style/ProductList.css'
+import PropTypes from 'prop-types';
 
 let count = 0;
  class ProductList extends Component {
@@ -19,7 +20,7 @@ let count = 0;
   }
 componentDidMount=()=>{
   count=0;
-  this.setState({...this.state,refresh:true});
+  this.setState({refresh:true});
 }
  
   
@@ -90,11 +91,13 @@ componentDidMount=()=>{
     )
   }
 }
+ProductList.propTypes = {
+  products: PropTypes.array
+};
+
 const mapStateToProps = state =>{
   return ({
-  products: state.products.products,
-  loading: state.products.loading,
-  error: state.products.error
+  products: state.products.products
 });
 }
 export default compose(

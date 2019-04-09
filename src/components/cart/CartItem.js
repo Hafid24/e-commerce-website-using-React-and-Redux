@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link,withRouter} from 'react-router';
 import {compose} from 'redux';
 import '../../App.css'
-
+import PropTypes from 'prop-types';
 
  class CartItem extends Component {
     state={
@@ -60,6 +60,15 @@ import '../../App.css'
     )
   }
 }
+
+CartItem.propTypes = {
+  product: PropTypes.object,
+  id:      PropTypes.number,
+  removeCart: PropTypes.func,
+  increment: PropTypes.func,
+  removeCart: PropTypes.func,
+  decrement: PropTypes.func
+};
 const mapDispatchToProps = (dispatch)=>{
   return {
       removeCart : (id)=> {dispatch({type: 'REMOVE_CART', id:id})},

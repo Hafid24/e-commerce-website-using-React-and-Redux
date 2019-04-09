@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import '../style/Categories.css'
+import PropTypes from 'prop-types';
 
 export default class Categories extends Component {
 
@@ -21,4 +22,9 @@ export default class Categories extends Component {
          
     )
   }
+}
+
+
+Categories.propTypes ={
+  category : PropTypes.string
 }

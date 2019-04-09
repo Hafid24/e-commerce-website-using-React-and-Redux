@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types';
 
   class Navbar extends Component {
   
@@ -37,6 +38,10 @@ import {Link} from 'react-router-dom'
     )
   }
 }
+
+Navbar.propTypes = {
+  productNumber: PropTypes.number
+};
 
 const mapStateToProps = state =>{
   return ({

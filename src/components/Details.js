@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {ButtonContainer} from './Button'
-import {Link,Redirect} from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 class Details extends Component {
     state={
@@ -64,6 +64,11 @@ class Details extends Component {
   }
  }
 
+ Details.propTypes ={
+  product : PropTypes.object,
+  addCart : PropTypes.func,
+  nothing : PropTypes.func
+}
 
 const mapStateToProps = (state,ownProps)=>{
   let id = ownProps.match.params.product_id;
