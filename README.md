@@ -1,3 +1,19 @@
+
+A fully functional E-Commerce site created using React-Redux.
+ 
+ Visit: https://e-commerce-phones.netlify.com/
+ 
+Key features:
+
+       - Pagination
+        -Searching
+        -Categorisation
+        -Getting data from local storage duo to the lack of API for phones data
+        -Best practices of developing react application implemented.
+        -Add To Basket feature implemented.
+        -CRUD operations on the cart
+
+-------------------------------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
