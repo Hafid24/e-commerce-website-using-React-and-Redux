@@ -10,6 +10,7 @@ import Pagination from '../pagination/Pagination'
 import '../style/ProductList.css'
 
 let count = 0;
+
  class ProductList extends Component {
   
   state={
@@ -19,14 +20,11 @@ let count = 0;
     totalPages: null,
     refresh: true
   }
-  componentWillReceiveProps(){
-
-    count=0;
+  componentWillReceiveProps(nextProps){
+    
     this.setState({
-        ...this.state,
-        allProducts: this.props.products
+        allProducts: nextProps.products
     })
-   
    }
 componentDidMount=()=>{
     console.log("brand mounted")
@@ -36,14 +34,15 @@ componentDidMount=()=>{
  
   
     componentDidUpdate(){
-      if((count == 0) && (this.props.products.length >0)){
+        
+      if(((count == 0) && (this.props.products.length >0))){
         this.setState({
           allProducts: this.props.products
         })
-      
+       
       count++;
       }
- 
+   
     }
  
 
@@ -80,9 +79,10 @@ componentDidMount=()=>{
     const  ProductsList= this.getProducts(this.state.currentProducts);
     
     if (totalProducts === 0) return null;
+    console.log("total pages",totalPages,this.props.match.params.brand,totalProducts)
     return (
 
-            <div  key = {this.props.match.params.brand}  id="content" class="container">
+            <div   key = {this.props.match.params.brand} id="content" class="container">
               <div className="padding-top">
               <div className="row">
                 <div className="col-sm-4 col-md-3">
@@ -92,7 +92,7 @@ componentDidMount=()=>{
                   <div className="row">
                     {ProductsList}
                     <div className="col-md-12 align-right">
-                    <Pagination totalRecords={totalProducts} pageLimit={6} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                    <Pagination  totalRecords={totalProducts} pageLimit={6} pageNeighbours={1} onPageChanged={this.onPageChanged} />
                     </div>
                   </div>
                 </div>
