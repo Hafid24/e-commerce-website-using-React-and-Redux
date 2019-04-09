@@ -10,27 +10,22 @@ export default class Categories extends Component {
    }else{
     classes.push("list-group-item");
    }
-   if(category=='Apple'){
+   if(category.toLowerCase()=='apple'){
     classes.push("list-group-item active");
  }else{
   classes.push("list-group-item");
  }
- if(category=='Nokia'){
+if(category.toLowerCase()=='google'){
   classes.push("list-group-item active");
 }else{
 classes.push("list-group-item");
 }
-if(category=='Google'){
+if(category.toLowerCase()=='htc'){
   classes.push("list-group-item active");
 }else{
 classes.push("list-group-item");
 }
-if(category=='HTC'){
-  classes.push("list-group-item active");
-}else{
-classes.push("list-group-item");
-}
-if(category=='Samsung'){
+if(category.toLowerCase()=='samsung'){
   classes.push("list-group-item active");
 }else{
 classes.push("list-group-item");
@@ -44,12 +39,11 @@ return classes;
       <div className="categories-container">
       <h3>Categories</h3>
             <div class="list-group">
-                    <Link to="#" className={classes[0]}>All</Link>
-                    <Link to="#" className={classes[1]}>Apple</Link>   
-                    <Link to="#" className={classes[2]}>Nokia</Link>
-                    <Link to="#" className={classes[3]}>Google</Link>
-                    <Link to="#" className={classes[4]}>HTC</Link>
-                    <Link to="#" className={classes[5]}>Sumsung</Link>
+                    <Link to={"/"} className={classes[0]}>All</Link>
+                    <Link to={"/brand/apple"} className={classes[1]}>Apple</Link>   
+                    <Link to={"/brand/google"} className={classes[2]}>Google</Link>
+                    <Link to={"/brand/htc"} className={classes[3]}>HTC</Link>
+                    <Link to={"/brand/samsung"} className={classes[4]}>Samsung</Link>
             </div>
       </div>
          

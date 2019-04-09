@@ -3,7 +3,12 @@ import {
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
     ADD_CART,
-    NOTHING
+    NOTHING,
+    REMOVE_CART,
+    INCREMENT, 
+    DECREMENT,
+    CLEAR_CART 
+
   } from '../actions/productActions';
   
   const initialState = {
@@ -19,7 +24,6 @@ import {
       case FETCH_PRODUCTS_BEGIN:
         return {
           ...state,
-          cart: [],
           loading: true,
           error: null
         };
@@ -51,11 +55,58 @@ import {
       state.cart.push(state.products.find(product => product.id === action.id));
       }
       
-     //state.cart.push("hh");
       return {
         ...state,
         loading: false,
         error: null
+      };
+      case REMOVE_CART:
+      state.products.find(product => product.id === action.id).inCart = false;
+      state.products.find(product => product.id === action.id).count = 0;
+      state.products.find(product => product.id === action.id).total = 0;
+      const newCart = state.cart.filter(function(product){
+        return product.id != action.id;
+    });
+      return {
+        ...state,
+        cart: newCart,
+        loading: false,
+        error:null
+      };
+      case INCREMENT:
+      state.cart.find(product => product.id === action.id).count +=1;
+      state.cart.find(product => product.id === action.id).total += state.cart.find(product => product.id === action.id).price;
+      return {
+        ...state,
+        loading: false,
+        error:null
+      };
+      case DECREMENT:
+      state.cart.find(product => product.id === action.id).count --;
+      state.cart.find(product => product.id === action.id).total -= state.cart.find(product => product.id === action.id).price;
+      if(state.cart.find(product => product.id === action.id).total<0){
+        state.cart.find(product => product.id === action.id).total =0;
+      }
+      if(state.cart.find(product => product.id === action.id).count<0){
+        state.cart.find(product => product.id === action.id).count =0;
+      }
+      return {
+        ...state,
+        loading: false,
+        error:null
+      };
+      case CLEAR_CART:
+      for(var p of state.cart){
+        state.products.find(product => product.id === p.id).count =0;  
+        state.products.find(product => product.id === p.id).total =0;
+        state.products.find(product => product.id === p.id).inCart = false;    
+      }
+      
+      return {
+        ...state,
+        cart: [],
+        loading: false,
+        error:null
       };
       default:
 

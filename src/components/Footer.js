@@ -5,13 +5,13 @@ import ProductList from './ProductList'
 export default class Footer extends Component {
   render() {
     return (
-      <div class="container">
+      <div class="container footer">
         <hr />
         <footer>
             <div class="row">
             <div class="col-lg-12">
             <p>Copyright &copy; <Link to={ProductList}>Packt
-            Publishing</Link> 2014</p>
+            Publishing</Link> 2019</p>
             </div>
             </div>
         </footer>

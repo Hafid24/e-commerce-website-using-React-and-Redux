@@ -14,6 +14,7 @@ class Details extends Component {
       ...this.state
     })
     this.props.history.push('/')
+    
   }
   addToCart=()=>{
    this.props.addCart(this.props.product.id)
@@ -51,7 +52,7 @@ class Details extends Component {
                {info}
              </p>
              <div>
-               
+                         
                <ButtonContainer onClick={this.doNothing}>Back to products</ButtonContainer>
                
                <ButtonContainer cart disabled={inCart?true:false} onClick={this.addToCart}>{inCart?"in cart":"add to cart"}</ButtonContainer>

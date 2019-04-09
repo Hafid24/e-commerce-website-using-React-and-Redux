@@ -10,7 +10,7 @@ import CartItem from './CartItem'
       <div className="container-fluid">
             { this.props.cart.map(item=>{
                 return(
-                        <CartItem id = {item.id}/>
+                        <CartItem id = {item.id} reRender = {this.props.reRender}/>
                 )
             })}
       </div>

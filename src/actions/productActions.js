@@ -6,6 +6,11 @@ export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 export const ADD_CART = 'ADD_CART'
 export const NOTHING = 'NOTHING'
+export const REMOVE_CART = 'REMOVE_CART'
+export const INCREMENT = 'INCREMENT'
+export const DECREMENT = 'DECREMENT'
+export const CLEAR_CART = 'CLEAR_CART'
+
 
 /*export function fetchProducts() {
     return dispatch => {
@@ -22,9 +27,7 @@ export const NOTHING = 'NOTHING'
   */
  export function fetchProducts() {
     return dispatch => {
-    
     dispatch(fetchProductsSuccess(storeProducts));
-    dispatch(fetchProductsBegin());
     return storeProducts;       
     };
   }

@@ -5,24 +5,37 @@ import { connect } from "react-redux";
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom'
 import {compose} from 'redux';
+import PayPalButton from '../PayPalButton'
 
 
 class Cart extends Component {
-  handleClearCart=()=>{
+  state={
 
   }
+  handleClearCart=()=>{
+    this.props.clearCart();
+  }
+  reRender = ()=>{
+   this.setState({ ...this.state})
+  }
+
+
   getTotal=()=>{
-    return 2;
+    var total=0;
+    for(var product of this.props.cart){
+      total += product.total;
+    }
+    return total;
   }
   
   render() {
     return (
       <section>
         <CartColumns/>
-        <CartList/>
+        <CartList reRender = {this.reRender}/>
         <div className="container">
           <div className="row">
-            <div className="col-10 mt-2 ml-sm-5 ml-md-auto text-capitalize text-right">
+            <div className="col-10 mt-6 marging-top ml-sm-5 ml-md-auto text-capitalize text-right">
             <Link to= '/'>
             <button className="btn btn-outline-danger text-uppercase mb-3 px-5" type="button" onClick={this.handleClearCart}>
             clear cart
@@ -33,7 +46,7 @@ class Cart extends Component {
                 total : </span>
                 <strong>$ {this.getTotal()}</strong>
             </h5>
-            </div>  
+{ /*           <PayPalButton total={this.getTotal()} clearCart={this.handleClearCart} history={this.props.history}/> */}            </div>  
           </div>
         </div>
 
@@ -48,7 +61,7 @@ const mapStateToProps = state =>{
 }
 const mapDispatchToProps = (dispatch)=>{
   return {
-      clearCart : ()=> {dispatch({type: 'CLEAR-CART'})}     
+      clearCart : ()=> {dispatch({type: 'CLEAR_CART'})}     
   }
 }
 export default compose(

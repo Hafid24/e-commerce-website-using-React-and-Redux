@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import Product from './Product'
 import { connect } from "react-redux";
-import {Link,withRouter} from 'react-router';
+import {Link,withRouter} from 'react-router-dom';
 import {compose} from 'redux';
-import { fetchProducts } from "../actions/productActions";
-import Arousel from './Arousel'
 import Categories from './Categories'
 import Pagination from '../pagination/Pagination'
 import '../style/ProductList.css'
@@ -16,24 +14,21 @@ let count = 0;
     allProducts:[],
     currentProducts: [], 
     currentPage: null, 
-    totalPages: null
+    totalPages: null,
+    refresh: true
   }
-
-  componentDidMount() {
-  this.props.dispatch(fetchProducts());
-  //this.setState({...this.state})
- //this.render();
+componentDidMount=()=>{
+  count=0;
+  this.setState({...this.state,refresh:true});
 }
-  componentWillReceiveProps(){
-    count=0;
-  }
+ 
   
     componentDidUpdate(){
       if((count == 0) && (this.props.products.length >0)){
         this.setState({
           allProducts: this.props.products
         })
-        
+      
       count++;
       }
  
@@ -46,7 +41,7 @@ let count = 0;
       products.map(product => {
               return(
                    <div class="col-sm-6 col-md-4">
-                     <Product id = {product.id}/>
+                     <Product id = {product.id} img={product.img}/>
                    </div>
               )
       })
@@ -68,15 +63,14 @@ let count = 0;
   render() {
     const { allProducts, currentProducts, currentPage, totalPages } = this.state;
     const totalProducts = allProducts.length;
-
+    
     if (totalProducts === 0) return null;
 
     const  ProductsList= this.getProducts(this.state.currentProducts);
-    console.log(ProductsList)
+    
     return (
 
             <div id="content" class="container">
-              <Arousel/>
               <div className="padding-top">
               <div className="row">
                 <div className="col-sm-4 col-md-3">
@@ -107,3 +101,4 @@ export default compose(
   withRouter,
   connect(mapStateToProps)
 )(ProductList);
+//export default withRouter(connect(mapStateToProps)(ProductList));

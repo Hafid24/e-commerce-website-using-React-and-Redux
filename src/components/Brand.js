@@ -58,7 +58,7 @@ componentDidMount=()=>{
               )
       })
       
-    ):(<h3>HEllo from product</h3>))
+    ):(<div></div>))
     }else { return (<h3>There is no product</h3>)}
   }
 
@@ -77,13 +77,12 @@ componentDidMount=()=>{
     
     const totalProducts = allProducts.length;
     
-    if (totalProducts === 0) return null;
-
     const  ProductsList= this.getProducts(this.state.currentProducts);
+    
+    if (totalProducts === 0) return null;
     return (
 
             <div  key = {this.props.match.params.brand}  id="content" class="container">
-              <Arousel/>
               <div className="padding-top">
               <div className="row">
                 <div className="col-sm-4 col-md-3">

@@ -12,16 +12,17 @@ import '../../App.css'
     handleRemoveItem=()=>{
         this.props.removeCart(this.props.product.id)
         this.setState({ ...this.state})
+        this.props.reRender();
     }
     handleDecrement=()=>{
       this.props.decrement(this.props.product.id)
       this.setState({ ...this.state})
-      console.log(this.props.product.total, this.props.product.count)
+      this.props.reRender();
     }
     handleIncrement=()=>{
       this.props.increment(this.props.product.id)    
       this.setState({ ...this.state})
-      console.log(this.props.product.total, this.props.product.count)
+      this.props.reRender();
     }
 
   render() {
