@@ -3,8 +3,6 @@ import Product from './Product'
 import { connect } from "react-redux";
 import {Link,withRouter} from 'react-router-dom';
 import {compose} from 'redux';
-
-import Arousel from './Arousel'
 import Categories from './Categories'
 import Pagination from '../pagination/Pagination'
 import '../style/ProductList.css'
