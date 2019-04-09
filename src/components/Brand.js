@@ -20,7 +20,7 @@ let count = 0;
     totalPages: null,
     refresh: true
   }
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps=(nextProps)=>{
     
     this.setState({
         allProducts: nextProps.products
@@ -33,7 +33,7 @@ componentDidMount=()=>{
 }
  
   
-    componentDidUpdate(){
+    componentDidUpdate=()=>{
         
       if(((count == 0) && (this.props.products.length >0))){
         this.setState({
@@ -104,13 +104,8 @@ componentDidMount=()=>{
 }
 const mapStateToProps = (state,ownProps) =>{
     let brand = ownProps.match.params.brand;
-    var filteredProducts = [];
-    for (var i=0; i<state.products.products.length; i++) {
-        if (state.products.products[i].company.toLowerCase().search(brand.toLowerCase()) != -1) {
-            filteredProducts.push(state.products.products[i]);
-        }
-    }
- 
+    const filtered = state.products.products.filter(product => product.company.toLowerCase() == brand.toLowerCase());
+
   return ({
   products: filteredProducts,
   loading: state.products.loading,
