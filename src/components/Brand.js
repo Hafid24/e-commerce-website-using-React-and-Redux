@@ -77,8 +77,24 @@ componentDidMount=()=>{
     
     const  ProductsList= this.getProducts(this.state.currentProducts);
     
-    if (totalProducts === 0) return null;
-    console.log("total pages",totalPages,this.props.match.params.brand,totalProducts)
+    if (totalProducts === 0) return (
+      <div   key = {this.props.match.params.brand} id="content" class="container">
+        <div className="padding-top">
+        <div className="row">
+          <div className="col-sm-4 col-md-3">
+              <Categories p = {this.props}  category={this.props.match.params.brand}/>
+          </div>
+          <div className="col-sm-8 col-md-9">
+            <div className="row">
+            
+              <div className="col-md-12 align-right">
+              <Pagination  totalRecords={totalProducts} pageLimit={6} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     );
     return (
 
             <div   key = {this.props.match.params.brand} id="content" class="container">
