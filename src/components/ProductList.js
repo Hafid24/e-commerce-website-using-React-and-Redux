@@ -47,7 +47,7 @@ componentDidMount=()=>{
               )
       })
       
-    ):(<h3>HEllo from product</h3>))
+    ):(<div></div>)
     }else { return (<h3>There is no product</h3>)}
   }
 
@@ -65,8 +65,24 @@ componentDidMount=()=>{
     const { allProducts, currentProducts, currentPage, totalPages } = this.state;
     const totalProducts = allProducts.length;
     
-    if (totalProducts === 0) return null;
-
+    if (totalProducts === 0) return (
+      <div   key = {this.props.match.params.brand} id="content" class="container">
+        <div className="padding-top">
+        <div className="row">
+          <div className="col-sm-4 col-md-3">
+              <Categories p = {this.props}  category={this.props.match.params.brand}/>
+          </div>
+          <div className="col-sm-8 col-md-9">
+            <div className="row">
+            
+              <div className="col-md-12 align-right">
+              <Pagination  totalRecords={totalProducts} pageLimit={6} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     );
     const  ProductsList= this.getProducts(this.state.currentProducts);
     
     return (
